@@ -26,14 +26,16 @@ const Coffe = () => {
 
 
 
-  console.log("run",coffee);
+  console.log("run", coffee);
 
   return (
     <div>
       {coffee.map((item, index) =>
-        <div key={index}>
-          <div>{item.title}</div>
-          <div>{item.description}</div>
+        <div key={index} >
+          <div className="container">
+            <div className="title">{item.title}</div>
+            <div className="title">{item.description}</div>
+          </div>
         </div>
 
       )}
