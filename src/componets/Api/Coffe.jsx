@@ -15,8 +15,10 @@ const Coffe = () => {
   const handleInput = (e) => {
     setSearch(e.target.value);
   };
-  const filtered = coffee.filter((item) =>
-    item.title.toLowerCase().includes(search)
+  const filtered = coffee.filter(
+    (item) =>
+      item.title.toLowerCase() &&
+      item.description.toLowerCase().includes(search)
   );
 
   const baseURL = "https://api.sampleapis.com/coffee/hot";
@@ -41,14 +43,15 @@ const Coffe = () => {
           placeholder="Search for .."
         ></input>
 
-        <select name="" id="">
+        <select name="" id="select">
           <option value="">All</option>
-          <option value="">Title</option>
+          <option value="Title">Title</option>
           <option value="">Description</option>
           <option value="">Img</option>
           <option value="">Ingredients</option>
         </select>
       </div>
+
       {filtered.map((item, index) => (
         <div key={index}>
           <div className="container">
@@ -61,7 +64,6 @@ const Coffe = () => {
           </div>
         </div>
       ))}
-      <pre>JSON GOES HERE</pre>
     </div>
   );
 };

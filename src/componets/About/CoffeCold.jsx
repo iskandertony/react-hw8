@@ -37,7 +37,7 @@ function CoffeCold() {
           </div>
         </div>
       ))}
-      <pre>JSON GOES HERE</pre>
+      
     </div>
     </div>
   );
