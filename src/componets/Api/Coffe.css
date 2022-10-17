@@ -1,15 +1,27 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 400px;
+  padding: 20px;
+}
+
+.title-img {
+  width: 200px;
+  height: 150px;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
 }
