@@ -2,10 +2,15 @@ import "./../Api/Coffe.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
+import { DatePicker } from 'antd';
+import 'antd/dist/antd.css';
+import { Input, Select, Spin } from 'antd';
 
 const Coffe = () => {
   const [coffee, setCoffe] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false)
+  const { Option } = Select
 
   useEffect(() => {
     getCoffe();
@@ -15,6 +20,9 @@ const Coffe = () => {
   const handleInput = (e) => {
     setSearch(e.target.value);
   };
+  const handleSelect = (value) => {
+    console.log(`selected ${value}`);
+  }
   const filtered = coffee.filter(
     (item) =>
       item.title.toLowerCase() &&
@@ -25,10 +33,13 @@ const Coffe = () => {
 
   async function getCoffe() {
     try {
+      setLoading(true)
       const response = await axios.get(baseURL);
       setCoffe(response.data);
+      setLoading(false)
     } catch (error) {
       console.error(error);
+      setLoading(false)
     }
   }
 
@@ -37,33 +48,42 @@ const Coffe = () => {
   return (
     <div>
       <div className="search">
-        <input
+        <Input
           value={search}
           onChange={handleInput}
           placeholder="Search for .."
-        ></input>
+        ></Input>
 
-        <select name="" id="select">
-          <option value="">All</option>
-          <option value="Title">Title</option>
-          <option value="">Description</option>
-          <option value="">Img</option>
-          <option value="">Ingredients</option>
-        </select>
+        <Select onChange={handleSelect} name="" id="select" defaultValue="All"
+          style={{
+            width: 120,
+          }}
+        >
+          <Option value="">All</Option>
+          <Option value="Title">Title</Option>
+          <Option value="">Description</Option>
+          <Option value="">Img</Option>
+          <Option value="">Ingredients</Option>
+        </Select>
       </div>
 
-      {filtered.map((item, index) => (
-        <div key={index}>
-          <div className="container">
-            <div className="title">{item.title}</div>
-            <div className="title">{item.description}</div>
-            <div>
-              <img src={item.image} className="title-img" alt="img"></img>
+      {loading
+        ? (<div><Spin /></div>)
+        : (
+          filtered.map((item ) => (
+            <div key={item.id}>
+              <div className="container">
+                <div className="title">{item.title}</div>
+                <div className="title">{item.description}</div>
+                <div>
+                  <img src={item.image} className="title-img" alt="img"></img>
+                </div>
+                <div className="title">{item.ingredients}</div>
+              </div>
             </div>
-            <div className="title">{item.ingredients}</div>
-          </div>
-        </div>
-      ))}
+          ))
+        )
+      }
     </div>
   );
 };

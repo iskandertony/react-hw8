@@ -25,8 +25,8 @@ function CoffeCold() {
   return (
     <div>
       <div>
-      {coffeeCold.map((item, index) => (
-        <div key={index}>
+      {coffeeCold.map((item) => (
+        <div key={item.id}>
           <div className="container">
             <div className="title">{item.title}</div>
             <div className="title">{item.description}</div>
