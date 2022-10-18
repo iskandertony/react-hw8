@@ -4,8 +4,12 @@ import { useState, useEffect } from "react";
 import React from "react";
 import "./../About/CoffeCold.css"
 
-function CoffeCold() {
+
+const CoffeCold = ({takeText}) => {
   const [coffeeCold, setCoffeCold] = useState([]);
+  
+
+
 
   useEffect(() => {
     getCoffeCold();
@@ -24,21 +28,22 @@ function CoffeCold() {
 
   return (
     <div>
+      <div>{takeText}</div>
       <div>
-      {coffeeCold.map((item) => (
-        <div key={item.id}>
-          <div className="container">
-            <div className="title">{item.title}</div>
-            <div className="title">{item.description}</div>
-            <div >
-              <img src={item.image} className="title-img"></img>
+        {coffeeCold.map((item) => (
+          <div key={item.id}>
+            <div className="container">
+              <div className="title">{item.title}</div>
+              <div className="title">{item.description}</div>
+              <div >
+                <img src={item.image} className="title-img"></img>
+              </div>
+              <div className="title">{item.ingredients}</div>
             </div>
-            <div className="title">{item.ingredients}</div>
           </div>
-        </div>
-      ))}
-      
-    </div>
+        ))}
+
+      </div>
     </div>
   );
 }

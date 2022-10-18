@@ -43,8 +43,6 @@ const Coffe = () => {
     }
   }
 
-  console.log("run", coffee);
-
   return (
     <div>
       <div className="search">
